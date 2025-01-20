@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 import DefaultLayout from '@/layouts/DefaultLayout.vue'
 import BreadcrumbDefault from '@/components/Breadcrumbs/BreadcrumbDefault.vue'
 import { useRoute } from 'vue-router';

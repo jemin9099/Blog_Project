@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 import { useDropZone, useFileDialog, useObjectUrl } from '@vueuse/core'
 import { ref, defineExpose } from 'vue';
 
@@ -14,10 +14,10 @@ const { open, onChange } = useFileDialog({
   multiple: false,
 })
 
-const filesData = ref([])
+const filesData = ref<any>([])
 const dropZoneRef = ref()
 
-const onDrop = (DroppedFiles) => {
+const onDrop = (DroppedFiles :any) => {
   // if (!props.isMultiple) {
   //   if (DroppedFiles && DroppedFiles?.length > 1) {
 
@@ -25,7 +25,7 @@ const onDrop = (DroppedFiles) => {
   //   }
   // }
 
-  DroppedFiles?.forEach(file => {
+  DroppedFiles?.forEach((file:any) => {
 
     filesData.value.push({
       file,
@@ -50,7 +50,7 @@ onChange((selectedFiles) => {
 
 useDropZone(dropZoneRef, onDrop)
 
-const getFilesData = () => filesData.value.map(f => f.file)
+const getFilesData = () => filesData.value.map((f:any) => f.file)
 defineExpose({ getFilesData })
 </script>
 <template>

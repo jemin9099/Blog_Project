@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 import { ref , onMounted } from 'vue';
 import DefaultLayout from '@/layouts/DefaultLayout.vue'
 import BreadcrumbDefault from '@/components/Breadcrumbs/BreadcrumbDefault.vue'

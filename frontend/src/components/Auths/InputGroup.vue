@@ -1,10 +1,11 @@
-<script setup >
+<script setup lang="ts">
 const props = defineProps(['label', 'type', 'placeholder' , 'modelValue' , 'isError'])
 const emit = defineEmits(['update:modelValue'])
 
-const onInput = (e) => {
-  emit('update:modelValue' , e)
-}
+const handleInput = (event: Event) => {
+  const target = event.target as HTMLInputElement;
+  emit('update:modelValue', target.value);
+};
 </script>
 
 <template>
@@ -15,7 +16,7 @@ const onInput = (e) => {
         :type="props.type"
         :placeholder="props.placeholder"
         :value="modelValue"
-        @input="onInput($event.target.value)"
+        @input="handleInput($event )"
         class="w-full rounded-lg border   bg-transparent py-4 pl-6 pr-10 outline-none focus:border-primary focus-visible:shadow-none dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary text-black dark:text-white"
         :class="isError?'border-red-500':'border-stroke'"
       />

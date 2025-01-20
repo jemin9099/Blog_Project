@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 import BreadcrumbDefault from '@/components/Breadcrumbs/BreadcrumbDefault.vue'
 import DefaultLayout from '@/layouts/DefaultLayout.vue'
 import Dropzone from '@/components/Dropzone.vue'
@@ -42,7 +42,7 @@ const fetchCategories = async () => {
     }
 }
 
-const handleChangeData = (editor) =>{
+const handleChangeData = (editor:string) =>{
     formData.value.description = editor    
 }
 
@@ -51,7 +51,7 @@ const handleSubmit = async() => {
     validateCategory()
     validateSlug()
     if(!nameError.value && !slugError.value && !categoryError.value){
-        const user = JSON.parse(localStorage.getItem('authData'))        
+        const user = JSON.parse(localStorage.getItem('authData') as any)        
         const newFormData = new FormData()
         newFormData.append('title' , formData.value.title)
         newFormData.append('slug' , formData.value.slug)

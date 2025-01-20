@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 import { useSidebarStore } from '@/stores/sidebar'
 import { onClickOutside } from '@vueuse/core'
 import { ref, onMounted } from 'vue'
@@ -63,14 +63,14 @@ const fetchCategories = async () => {
   const { data, status } = await axios.get(import.meta.env.VITE_API_BASE_URL + '/category/all', { headers: authHeaders })
   if (status === 200) {
     categoryList.value = data.data
-    const sidebarCategory = { name: 'CATEGORIES', menuItems: [] }
-    categoryList.value?.forEach(category => {
+    const sidebarCategory = { name: 'CATEGORIES', menuItems: [] as any }
+    categoryList.value?.forEach((category:any) => {
       sidebarCategory.menuItems.push({
         icon:  `<svg xmlns="http://www.w3.org/2000/svg" class="fill-current"  width="22" height="22" viewBox="0 0 22 22" fill="none"><title>circle-medium</title><path d="M12,8A4,4 0 0,0 8,12A4,4 0 0,0 12,16A4,4 0 0,0 16,12A4,4 0 0,0 12,8Z" /></svg>`,
         label: category.name,
         route: '/category/' + category._id,
         isAdmin:true
-      })
+      }) 
     });
     menuGroups.value.push(sidebarCategory)
   }

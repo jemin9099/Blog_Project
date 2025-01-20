@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 import { ref, defineExpose , defineEmits } from 'vue';
 import axios from 'axios';
 import { useToast } from '@/common/useToast.js'
@@ -7,7 +7,7 @@ const { toastTypeSuccess, toastTypeError } = useToast()
 const emit = defineEmits(['refresh'])
 const dialog = ref(false)
 const commentId = ref()
-const open = (item) => {
+const open = (item:any) => {
     dialog.value = true
     commentId.value = item._id
 }

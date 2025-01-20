@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 import BreadcrumbDefault from '@/components/Breadcrumbs/BreadcrumbDefault.vue'
 import DefaultLayout from '@/layouts/DefaultLayout.vue'
 import DeleteDialog from '@/views/Blogs/DeleteDialog.vue'

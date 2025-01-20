@@ -1,14 +1,12 @@
-<script setup>
+<script setup lang="ts">
 import BreadcrumbDefault from '@/components/Breadcrumbs/BreadcrumbDefault.vue'
 import DefaultLayout from '@/layouts/DefaultLayout.vue'
-import DeleteDialog from '@/views/comments/DeleteDialog.vue'
 import axios from 'axios';
 import { ref, onMounted, watch } from 'vue';
 import { authHeaders } from '@/common/index.js'
 import moment from 'moment';
 
 const allUsers = ref()
-const deleteBlog = ref()
 const fetchAllUsers = async () => {
     const { data, status } = await axios.get(import.meta.env.VITE_API_BASE_URL + '/users/', { headers: authHeaders })
 
@@ -17,19 +15,12 @@ const fetchAllUsers = async () => {
     }
 }
 
-const namedAvatar = (name) => {
-    const shortName = name.split(' ')
-    console.log(shortName[0].charAt(0));
-    return `${shortName[0].charAt(0)} ${shortName[1].charAt(0)}`
-}   
+   
 onMounted(() => {
     fetchAllUsers()
 })
 </script>
 <template>
-    <teleport to='body'>
-        <DeleteDialog ref="deleteBlog" @refresh="fetchAllComments()" />
-    </teleport>
     <DefaultLayout>
         <BreadcrumbDefault :pageTitle="'Users'" />
         <div class="w-full bg-white dark:bg-boxdark p-5 rounded-md shadow">
@@ -73,16 +64,6 @@ onMounted(() => {
                                 </td>
                                 <td class="px-5 py-5 border-b border-gray-200 text-md">
                                     {{ moment(user.createdAt).format('DD-MM-YYYY') }}
-                                </td>
-                                <td class="px-5 py-5 border-b border-gray-200 text-md ">
-                                    <span @click="deleteBlog.open(comment)" >
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="fill-red " width="26" height="26"
-                                            viewBox="0 0 22 22" fill="none">
-                                            <title>delete-outline</title>
-                                            <path
-                                                d="M6,19A2,2 0 0,0 8,21H16A2,2 0 0,0 18,19V7H6V19M8,9H16V19H8V9M15.5,4L14.5,3H9.5L8.5,4H5V6H19V4H15.5Z" />
-                                        </svg>
-                                    </span>
                                 </td>
                             </tr>
                         </tbody>

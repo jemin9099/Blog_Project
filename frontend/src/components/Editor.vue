@@ -12,8 +12,9 @@
     </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { computed, ref, watch ,defineEmits, onMounted, useTemplateRef, defineProps } from 'vue';
+
 import { Ckeditor } from '@ckeditor/ckeditor5-vue';
 
 import {
@@ -78,13 +79,13 @@ const props = defineProps({
 const emit = defineEmits(['onChange'])
 const LICENSE_KEY = 'GPL'; // or <YOUR_LICENSE_KEY>.
 
-const editorWordCount = useTemplateRef('editorWordCountElement');
+const editorWordCount = useTemplateRef<any>('editorWordCountElement');
 
 const isLayoutReady = ref(false);
 
 const editor = ClassicEditor;
 
-const configData = ref({
+const configData = ref<any>({
     toolbar: {
         items: [
             'sourceEditing',
@@ -280,14 +281,14 @@ onMounted(() => {
     isLayoutReady.value = true;
     
 });
-function onReady(editor) {
+function onReady(editor:any) {
     [...editorWordCount.value.children].forEach(child => child.remove());
     const wordCount = editor.plugins.get('WordCount');
     editorWordCount.value.appendChild(wordCount.wordCountContainer);
 }
 
 watch(() => props.modelValue, ()=> {
-    configData.value.initialData = props.modelValue
+    configData.value.initialData = props.modelValue as string
 })
 
 watch(() => configData.value.initialData,()=>{

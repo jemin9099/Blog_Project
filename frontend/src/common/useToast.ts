@@ -10,34 +10,34 @@ const config = {
 
   export const useToast = () => {
   
-    const toastTypeDefault = (msg) => {
+    const toastTypeDefault = (msg:any) => {
       toast(msg, {
         ...config,
       })
     }
   
-    const toastTypeInfo = (msg) => {
+    const toastTypeInfo = (msg:any) => {
       toast(msg, {
         ...config,
         type: 'info',
       })
     }
   
-    const toastTypeSuccess = (msg) => {
+    const toastTypeSuccess = (msg:any) => {
       toast(msg, {
         ...config,
         type: 'success',
       })
     }
   
-    const toastTypeWarning = (msg) => {
+    const toastTypeWarning = (msg:any) => {
       toast(msg, {
         ...config,
         type: 'warning',
       })
     }
   
-    const toastTypeError = (msg) => {
+    const toastTypeError = (msg:any) => {
       toast(msg, {
         ...config,
         type: 'error',
